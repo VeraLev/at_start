@@ -22,3 +22,16 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 14
+
+  # Те же тесты, но внутри Docker-контейнера (проверяем, что запуск в контейнере работает)
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose run --rm --build tests
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-docker
+          path: playwright-report/
+          retention-days: 14

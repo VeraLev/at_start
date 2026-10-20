@@ -29,3 +29,18 @@
 | `npm run report` | открыть отчёт последнего прогона |
 
 **На GitHub**: тесты под standard_user запускаются сами при каждом изменении (вкладка **Actions**). Тесты под problem_user запускаются вручную: Actions → «Тесты под problem_user» → Run workflow. Отчёт с видео упавших тестов лежит в разделе *Artifacts* у прогона.
+
+## Запуск в Docker
+
+Нужен установленный и запущенный [Docker Desktop](https://www.docker.com/products/docker-desktop/). Node.js и браузеры ставить не нужно: всё есть внутри контейнера.
+
+| Команда | Что делает |
+|---|---|
+| `npm run docker:test` | тесты под standard_user в контейнере |
+| `npm run docker:problem` | тесты под problem_user в контейнере |
+
+Без npm то же самое: `docker compose run --rm --build tests`.
+
+В контейнере браузер работает без окна. Отчёт, скриншоты и видео сохраняются в папки `playwright-report` и `test-results` проекта, отчёт открывается командой `npm run report`. Смотреть на браузер вживую можно только без Docker: `npm run test:headed`.
+
+Версия образа в `Dockerfile` должна совпадать с версией `@playwright/test` в `package.json`. При обновлении Playwright меняйте обе.
