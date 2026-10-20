@@ -1,0 +1,11 @@
+services:
+  tests:
+    build: .
+    environment:
+      - CI=true
+    # Отчёт и результаты (скриншоты, видео) сохраняются в папку проекта на компьютере
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    # Рекомендация Playwright для Chromium в Docker
+    ipc: host

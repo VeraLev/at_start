@@ -8,12 +8,14 @@
     "test:headed": "playwright test --project=standard_user --headed --workers=1",
     "test:problem": "playwright test --project=problem_user",
     "test:problem:headed": "playwright test --project=problem_user --headed --workers=1",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "docker:test": "docker compose run --rm --build tests npm test",
+    "docker:problem": "docker compose run --rm --build tests npm run test:problem"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.64.1"
+    "@playwright/test": "1.64.1"
   }
 }
