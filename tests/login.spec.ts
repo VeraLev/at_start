@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login, loginAsStandardUser } from './helpers';
+import { login, loginAsUser } from './helpers';
 
 // Сценарий 1: вход с верным логином открывает каталог товаров.
 test('вход с верным логином открывает каталог', async ({ page }) => {
@@ -42,7 +42,7 @@ test('заблокированный пользователь не может в
 
 // Сценарий 9: выход из аккаунта возвращает на страницу входа.
 test('выход из аккаунта возвращает на страницу входа', async ({ page }) => {
-  await loginAsStandardUser(page);
+  await loginAsUser(page);
 
   // Открыть боковое меню и нажать «Logout»
   await page.getByRole('button', { name: 'Open Menu' }).click();

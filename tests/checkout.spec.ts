@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { loginAsStandardUser } from './helpers';
+import { loginAsUser } from './helpers';
 
 test.beforeEach(async ({ page }) => {
   // Войти, положить товар в корзину и перейти к оформлению
-  await loginAsStandardUser(page);
+  await loginAsUser(page);
   await page.getByTestId('add-to-cart-sauce-labs-backpack').click();
   await page.getByTestId('shopping-cart-link').click();
   await page.getByTestId('checkout').click();

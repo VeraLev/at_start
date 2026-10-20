@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { Page, expect, test } from '@playwright/test';
 
 // Общий шаг для многих тестов: войти на сайт.
 export async function login(page: Page, username = 'standard_user', password = 'secret_sauce') {
@@ -8,8 +8,10 @@ export async function login(page: Page, username = 'standard_user', password = '
   await page.getByTestId('login-button').click();
 }
 
-// Войти и убедиться, что открылся каталог.
-export async function loginAsStandardUser(page: Page) {
-  await login(page);
+// Войти пользователем, под которым идёт прогон (standard_user или problem_user,
+// задаётся в playwright.config.ts), и убедиться, что открылся каталог.
+export async function loginAsUser(page: Page) {
+  const username = test.info().project.metadata.username ?? 'standard_user';
+  await login(page, username);
   await expect(page).toHaveURL(/inventory\.html/);
 }

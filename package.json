@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test --project=standard_user",
+    "test:headed": "playwright test --project=standard_user --headed --workers=1",
+    "test:problem": "playwright test --project=problem_user",
+    "test:problem:headed": "playwright test --project=problem_user --headed --workers=1",
+    "report": "playwright show-report"
   },
   "keywords": [],
   "author": "",
