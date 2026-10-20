@@ -6,6 +6,8 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL: 'https://www.saucedemo.com',
+    // На сайте у элементов есть метки data-test, по ним тесты находят кнопки и поля
+    testIdAttribute: 'data-test',
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
     // Необязательно: свой путь к браузеру (нужен только в некоторых средах)
