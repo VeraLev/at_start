@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { loginAsStandardUser } from './helpers';
+import { loginAsUser } from './helpers';
 
 test.beforeEach(async ({ page }) => {
-  await loginAsStandardUser(page);
+  await loginAsUser(page);
 });
 
 // Сценарий 4: товар добавляется в корзину, счётчик на иконке меняется.

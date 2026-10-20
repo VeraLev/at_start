@@ -1,5 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
-import { loginAsStandardUser } from './helpers';
+import { loginAsUser } from './helpers';
 
 // Цены всех товаров на странице как числа, например «$29.99» → 29.99.
 async function getPrices(page: Page) {
@@ -9,7 +9,7 @@ async function getPrices(page: Page) {
 
 // Сценарий 6: сортировка по цене работает.
 test('сортировка по цене: от дешёвых к дорогим', async ({ page }) => {
-  await loginAsStandardUser(page);
+  await loginAsUser(page);
 
   await page.getByTestId('product-sort-container').selectOption('lohi');
 
@@ -18,7 +18,7 @@ test('сортировка по цене: от дешёвых к дорогим'
 });
 
 test('сортировка по цене: от дорогих к дешёвым', async ({ page }) => {
-  await loginAsStandardUser(page);
+  await loginAsUser(page);
 
   await page.getByTestId('product-sort-container').selectOption('hilo');
 

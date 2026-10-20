@@ -13,5 +13,19 @@
 `tests/helpers.ts` — общий шаг «войти на сайт», который используют многие тесты.
 
 ## Запуск
-- Автоматически: при каждом изменении в GitHub (вкладка **Actions**). Отчёт лежит в разделе *Artifacts* у прогона.
-- Вручную: `npm ci`, `npx playwright install chromium`, `npm test`.
+
+Тесты гоняются под двумя пользователями сайта:
+- `standard_user` — всё работает, тесты должны быть зелёными;
+- `problem_user` — на сайте специально заложены баги, часть тестов должна упасть.
+
+**На своём компьютере** (нужен Node.js 18+): один раз `npm ci` и `npx playwright install chromium`, затем:
+
+| Команда | Что делает |
+|---|---|
+| `npm test` | все тесты под standard_user, браузер скрыт |
+| `npm run test:headed` | то же с видимым браузером (действия замедлены) |
+| `npm run test:problem` | все тесты под problem_user |
+| `npm run test:problem:headed` | под problem_user с видимым браузером |
+| `npm run report` | открыть отчёт последнего прогона |
+
+**На GitHub**: тесты под standard_user запускаются сами при каждом изменении (вкладка **Actions**). Тесты под problem_user запускаются вручную: Actions → «Тесты под problem_user» → Run workflow. Отчёт с видео упавших тестов лежит в разделе *Artifacts* у прогона.
